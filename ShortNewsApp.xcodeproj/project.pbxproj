@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		941A9CC52CC0A073006BEFB7 /* ShortNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941A9CBA2CC0A073006BEFB7 /* ShortNewsApp.framework */; };
+		941A9CD82CC0A32A006BEFB7 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = 941A9CD72CC0A32A006BEFB7 /* ReadMe.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		941A9CBA2CC0A073006BEFB7 /* ShortNewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ShortNewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941A9CC42CC0A073006BEFB7 /* ShortNewsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShortNewsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		941A9CD72CC0A32A006BEFB7 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -73,6 +75,7 @@
 		941A9CB02CC0A073006BEFB7 = {
 			isa = PBXGroup;
 			children = (
+				941A9CD72CC0A32A006BEFB7 /* ReadMe.md */,
 				941A9CBC2CC0A073006BEFB7 /* ShortNewsApp */,
 				941A9CC82CC0A073006BEFB7 /* ShortNewsAppTests */,
 				941A9CBB2CC0A073006BEFB7 /* Products */,
@@ -190,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				941A9CD82CC0A32A006BEFB7 /* ReadMe.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
