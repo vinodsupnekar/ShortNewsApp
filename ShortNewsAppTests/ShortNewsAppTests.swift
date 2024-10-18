@@ -5,13 +5,45 @@
 //  Created by Vinod Supnekar on 17/10/24.
 //
 
-import Testing
+import XCTest
 @testable import ShortNewsApp
 
-struct ShortNewsAppTests {
+class ShortNewsAppTests: XCTestCase {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+   func test_init_doesNotRequestDataFromURL(){
+
+        let url = URL(string: "https://a-given-url.com")!
+        let client = HTTPClientSpy()
+        let sut = RemoteNewsLoader(url: url, client: client)
+        
+        XCTAssertEqual(client.requestedURLs, [])
+    }
+    class HTTPClientSpy: HTTPClient {
+        
+        private var messages = [(url: URL, completion:  (HTTPClient.Result) -> Void)]()
+        
+        var requestedURLs: [URL] {
+            
+            return messages.map {
+                $0.url
+            }
+        }
+        
+        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
+            messages.append((url, completion))
+        }
+        
+        func complete(with error :Error, at index: Int = 0) {
+            messages[index].completion(.failure(error))
+        }
+        
+        func complete(withStatusCode code: Int, data: Data, at index: Int = 0) {
+            
+            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: code, httpVersion: nil, headerFields: nil)!
+            
+            messages[index].completion(.success((data, response)))
+        }
+        
     }
 
 }
