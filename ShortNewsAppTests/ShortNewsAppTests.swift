@@ -12,21 +12,28 @@ class ShortNewsAppTests: XCTestCase {
 
    func test_init_doesNotRequestDataFromURL(){
 
-        let url = URL(string: "https://a-given-url.com")!
-        let client = HTTPClientSpy()
-        let sut = RemoteNewsLoader(url: url, client: client)
+       let url = URL(string: "https://a-given-url.com")!
+       let (sut, client) = makeSUT(url: url)
         
         XCTAssertEqual(client.requestedURLs, [])
     }
     
     func test_load_requestDataFromURL() {
+        
         let url = URL(string: "https://a-given-url.com")!
-        let client = HTTPClientSpy()
-        let sut = RemoteNewsLoader(url: url, client: client)
-       
+        let (sut, client) = makeSUT(url: url)
         sut.loadNewsFeed{ _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
+    }
+    
+    
+    private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!) -> (RemoteNewsLoader, HTTPClientSpy) {
+        let url = URL(string: "https://a-given-url.com")!
+        let client = HTTPClientSpy()
+        let sut = RemoteNewsLoader(url: url, client: client)
+        
+        return (sut, client)
     }
     
     class HTTPClientSpy: HTTPClient {
