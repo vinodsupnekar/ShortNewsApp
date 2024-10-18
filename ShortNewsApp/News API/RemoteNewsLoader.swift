@@ -17,7 +17,7 @@ public final class RemoteNewsLoader: NewsLoader {
     private let url: URL
     private let client: HTTPClient
     
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case connectivity
         case invalidData
     }

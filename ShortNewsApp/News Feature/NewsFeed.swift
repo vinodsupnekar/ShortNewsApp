@@ -5,7 +5,7 @@
 //  Created by Vinod Supnekar on 17/10/24.
 //
 
-public struct NewsFeed {
+public struct NewsFeed: Equatable {
     let source: String
     let title: String
     let desctiption: String

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import ShortNewsApp
+import ShortNewsApp
 
 class ShortNewsAppTests: XCTestCase {
 
@@ -35,6 +35,34 @@ class ShortNewsAppTests: XCTestCase {
         sut.loadNewsFeed{ _ in }
         
         XCTAssertEqual(client.requestedURLs, [url, url])
+    }
+    
+    
+    func test_load_deliversErrorOnClientError() {
+        
+        let (sut, client) = makeSUT()
+        let expectation = expectation(description: "wait for completion")
+       
+        let expectedResult = RemoteNewsLoader.Result.failure(RemoteNewsLoader.Error.connectivity)
+        
+        sut.loadNewsFeed { receivedResult in
+            
+            switch(receivedResult, expectedResult) {
+            case let(.success(receivedItems), .success(expectedItems)):
+                XCTAssertEqual(receivedItems, expectedItems)
+                
+            case let(.failure(expectedError as RemoteNewsLoader.Error), .failure(receivedError as RemoteNewsLoader.Error)):
+                XCTAssertEqual(expectedError, receivedError)
+             default:
+                XCTFail("Expected result \(expectedResult) but got \(receivedResult)")
+            }
+            expectation.fulfill()
+        }
+        
+        let clientError = NSError(domain: "Test", code: 0)
+        client.complete(with: clientError)
+        
+        wait(for: [expectation], timeout: 3.0)
     }
     
     
