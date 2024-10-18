@@ -18,7 +18,17 @@ class ShortNewsAppTests: XCTestCase {
         
         XCTAssertEqual(client.requestedURLs, [])
     }
-
+    
+    func test_load_requestDataFromURL() {
+        let url = URL(string: "https://a-given-url.com")!
+        let client = HTTPClientSpy()
+        let sut = RemoteNewsLoader(url: url, client: client)
+       
+        sut.loadNewsFeed{ _ in }
+        
+        XCTAssertEqual(client.requestedURLs, [url])
+    }
+    
     class HTTPClientSpy: HTTPClient {
         
         private var messages = [(url: URL, completion:  (HTTPClient.Result) -> Void)]()
