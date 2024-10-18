@@ -13,7 +13,7 @@ class ShortNewsAppTests: XCTestCase {
    func test_init_doesNotRequestDataFromURL(){
 
        let url = URL(string: "https://a-given-url.com")!
-       let (sut, client) = makeSUT(url: url)
+       let (_, client) = makeSUT(url: url)
         
         XCTAssertEqual(client.requestedURLs, [])
     }
@@ -25,6 +25,16 @@ class ShortNewsAppTests: XCTestCase {
         sut.loadNewsFeed{ _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
+    }
+    
+    func test_loadTwice_requestDataFromURLTwice() {
+        
+        let url = URL(string: "https://a-given-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        sut.loadNewsFeed{ _ in }
+        sut.loadNewsFeed{ _ in }
+        
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     
