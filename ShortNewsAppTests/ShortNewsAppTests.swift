@@ -18,6 +18,7 @@ class ShortNewsAppTests: XCTestCase {
         
         XCTAssertEqual(client.requestedURLs, [])
     }
+
     class HTTPClientSpy: HTTPClient {
         
         private var messages = [(url: URL, completion:  (HTTPClient.Result) -> Void)]()
