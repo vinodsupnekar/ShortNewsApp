@@ -68,7 +68,7 @@ public final class RemoteNewsLoader: NewsLoader {
                     publishedDate: remoteItem.publishedDate)
             }))
             
-        } catch let error {
+        } catch _ {
             return .failure(Error.invalidData)
         }
     }
