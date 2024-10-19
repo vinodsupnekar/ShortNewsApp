@@ -90,6 +90,7 @@ class ShortNewsAppTests: XCTestCase {
             let jsonData = try! JSONSerialization.data(withJSONObject: json)
             client.complete(withStatusCode: 200, data: jsonData)
             
+            client.complete(withStatusCode: 200, data: makeItemJSON([]))
         }
     }
     
@@ -119,6 +120,31 @@ class ShortNewsAppTests: XCTestCase {
             client.complete(withStatusCode: 200, data: jsonData)
             
         }
+    }
+    
+    func test_load_doesNotDeliverResultAfterSUTHasBeenDeallocated() {
+        
+        let url = URL(string: "https://a-given-url.com")!
+        let client = HTTPClientSpy()
+        var sut: RemoteNewsLoader? = RemoteNewsLoader(url: url, client: client)
+       
+        
+        var capturedResult = [RemoteNewsLoader.Result]()
+        
+        sut?.loadNewsFeed { result in
+            capturedResult.append(result)
+        }
+        
+        sut = nil
+        client.complete(withStatusCode: 200, data: makeItemJSON([]))
+        
+        XCTAssertTrue(capturedResult.isEmpty)
+    }
+    
+    private func makeItemJSON(_ itemsList: [[String: Any]]) -> Data {
+        
+        let json = ["data": itemsList]
+        return try! JSONSerialization.data(withJSONObject: json)
     }
     
     private func expect(_ sut: RemoteNewsLoader ,expectedResult: RemoteNewsLoader.Result, on action: () -> Void) {
