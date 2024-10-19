@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O5N-Co-aTC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="O5N-Co-aTC">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -27,16 +27,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" ambiguous="YES" text="asasas asasas asasasqwqw fgfgfg fgfg " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u35-Nl-BD5" userLabel="title">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" text="asasas asasas asasasqwqw fgfgfg fgfg " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u35-Nl-BD5" userLabel="title">
                                                     <rect key="frame" x="10" y="11" width="373" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="eMS-Z4-btn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRh-e9-XbL" userLabel="description">
-                                                    <rect key="frame" x="10" y="52" width="373" height="69"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRh-e9-XbL" userLabel="description">
+                                                    <rect key="frame" x="10" y="52" width="373" height="54"/>
                                                     <string key="text">asasas asasas asasasqwqw fgfgfg fgfg  asasas asasas asasasqwqw fgfgfg fgfg   asasas asasas asasasqwqw fgfgfg fgfg asasas asasas asasasqwqw fgfgfg fgfg asasas asasas asasasqwqw fgfgfg fgfg asasas asasas asasasqwqw fgfgfg fgfg  asasas asasas asasasqwqw fgfgfg fgfg asasas asasas asasasqwqw fgfgfg fgfg </string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -47,7 +50,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="u35-Nl-BD5" secondAttribute="trailing" constant="10" id="6cM-p7-9ZP"/>
                                                 <constraint firstItem="yRh-e9-XbL" firstAttribute="leading" secondItem="lVV-5A-hRM" secondAttribute="leading" constant="10" id="JYt-PB-UNh"/>
                                                 <constraint firstItem="u35-Nl-BD5" firstAttribute="leading" secondItem="lVV-5A-hRM" secondAttribute="leading" constant="10" id="MCj-cN-lbE"/>
-                                                <constraint firstAttribute="bottom" secondItem="yRh-e9-XbL" secondAttribute="bottom" constant="-5" id="YeI-2C-Uk2"/>
+                                                <constraint firstAttribute="bottom" secondItem="yRh-e9-XbL" secondAttribute="bottom" constant="10" id="YeI-2C-Uk2"/>
                                                 <constraint firstAttribute="trailing" secondItem="yRh-e9-XbL" secondAttribute="trailing" constant="10" id="aK4-2I-JRg"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -58,17 +61,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="AJJ-wE-ges">
+                                <rect key="frame" x="107" y="402.33333333333331" width="179" height="72.666666666666686"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-Gj-049">
+                                        <rect key="frame" x="0.0" y="0.0" width="179" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Retry"/>
+                                        <connections>
+                                            <action selector="retryNetwork" destination="BYZ-38-t0r" eventType="touchUpInside" id="aRd-PQ-gR7"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet connection " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wz-44-F8y">
+                                        <rect key="frame" x="0.0" y="52.333333333333371" width="179" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="O5N-Co-aTC" secondAttribute="bottom" id="2WC-yR-Hhu"/>
+                            <constraint firstItem="AJJ-wE-ges" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="9Lo-7y-ocD"/>
                             <constraint firstItem="O5N-Co-aTC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AQB-jq-7fq"/>
                             <constraint firstItem="O5N-Co-aTC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NWW-Ax-OsW"/>
+                            <constraint firstItem="AJJ-wE-ges" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="P5h-en-HZQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O5N-Co-aTC" secondAttribute="trailing" id="vZN-dq-o8h"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noNetworkConnectionView" destination="AJJ-wE-ges" id="sDg-WK-It6"/>
                         <outlet property="tableView" destination="O5N-Co-aTC" id="Vf4-C9-gci"/>
                     </connections>
                 </viewController>

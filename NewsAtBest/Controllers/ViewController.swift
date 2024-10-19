@@ -11,17 +11,16 @@ import ShortNewsApp
 protocol NewsFeedRefreshDelegate: AnyObject {
     @MainActor
     func didRequestFeedRefresh(_ cellModel: [NewsFeedModel])
+    
+    @MainActor
+    func didReceiveError(_ errpr: Error)
 }
 
 
-class ViewController: UIViewController, NewsFeedRefreshDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
-    
-    func didRequestFeedRefresh(_ cellModels: [NewsFeedModel]) {
-        self.cellModels = cellModels
-        tableView.reloadData()
-    }
+    @IBOutlet var noNetworkConnectionView: UIView!
     
     var viewModel : NewsFeedViewModel?
     var cellModels: [NewsFeedModel]?
@@ -30,8 +29,9 @@ class ViewController: UIViewController, NewsFeedRefreshDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.tableView.dataSource = self
-        tableView.estimatedRowHeight = 100 
+        tableView.estimatedRowHeight = 20
         tableView.rowHeight = UITableView.automaticDimension
+        noNetworkConnectionView.isHidden = true
         refresh()
     }
     
@@ -44,6 +44,26 @@ class ViewController: UIViewController, NewsFeedRefreshDelegate {
         
         viewModel?.getNewsFeed()
     }
+    
+    @IBAction func retryNetwork() {
+        viewModel?.getNewsFeed()
+    }
+}
+
+extension ViewController: NewsFeedRefreshDelegate {
+    
+    func didReceiveError(_ errpr: any Error) {
+        noNetworkConnectionView.isHidden = false
+        tableView.isHidden = true
+    }
+    
+    func didRequestFeedRefresh(_ cellModels: [NewsFeedModel]) {
+        tableView.isHidden = false
+        noNetworkConnectionView.isHidden = true
+        self.cellModels = cellModels
+        tableView.reloadData()
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource {
@@ -55,6 +75,10 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedCell") as! NewsFeedCell
+        
+        cell.title.numberOfLines = 0
+        cell.descriptionLabel.numberOfLines = 0
+        
         if let model = cellModels?[indexPath.row] {
             cell.title.text = model.title
             cell.descriptionLabel.text = model.description

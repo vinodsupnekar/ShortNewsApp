@@ -45,7 +45,11 @@ class NewsFeedViewModel {
                             await self.delegate?.didRequestFeedRefresh(model)
                     }
                 }
-            case .failure(let error): break
+            case .failure(let error):
+                Task {
+                    await self.delegate?.didReceiveError(error)
+            }
+                break
                 
             }
         }

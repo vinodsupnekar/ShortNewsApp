@@ -26,11 +26,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let rootViewController = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
             
+            rootViewController.title = "Short News"
             let client = URLSessionHttpClient()
             let loader = RemoteNewsLoader(url: URL(string: "https://riad-news-api.vercel.app/api/news/source?code=US-FN")!,
                                           client: client)
             let viewModel = NewsFeedViewModel(newsLoader: loader)
-
+            
             rootViewController.inject(viewModel: viewModel)
             rootViewController.loadViewIfNeeded()
             rootViewController.view.backgroundColor = .white // Example configuration
