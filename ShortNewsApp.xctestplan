@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "2F1FE0C6-D9EF-4D79-AB4E-E4A0B686A3A6",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:ShortNewsApp.xcodeproj",
+        "identifier" : "941A9CC32CC0A073006BEFB7",
+        "name" : "ShortNewsAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
