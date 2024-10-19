@@ -10,6 +10,14 @@ struct RemoteNewsItem: Decodable {
     let title: String
     let description: String
     let publishedDate: String
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case source = "source"
+        case title = "title"
+        case description = "description"
+        case publishedDate = "pubDate"
+    }
 }
 
 public final class RemoteNewsLoader: NewsLoader {
@@ -68,7 +76,7 @@ public final class RemoteNewsLoader: NewsLoader {
                     publishedDate: remoteItem.publishedDate)
             }))
             
-        } catch _ {
+        } catch (let error) {
             return .failure(Error.invalidData)
         }
     }
