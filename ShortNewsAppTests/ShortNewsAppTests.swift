@@ -80,6 +80,19 @@ class ShortNewsAppTests: XCTestCase {
         }
     }
     
+    func test_load_deliversNoItemson200HTTPResponseWithEmptyJsonList() {
+        
+        let (sut, client) = makeSUT()
+        
+        expect(sut, expectedResult: .success([])) {
+            let json = ["data": [],
+                        "status": ""]
+            let jsonData = try! JSONSerialization.data(withJSONObject: json)
+            client.complete(withStatusCode: 200, data: jsonData)
+            
+        }
+    }
+    
     private func expect(_ sut: RemoteNewsLoader ,expectedResult: RemoteNewsLoader.Result, on action: () -> Void) {
                 
         let expectation = expectation(description: "wait for completion")
