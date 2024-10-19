@@ -71,7 +71,7 @@ public final class RemoteNewsLoader: NewsLoader {
             }))
             
         } catch let error {
-            return .failure(error)
+            return .failure(Error.invalidData)
         }
     }
 }

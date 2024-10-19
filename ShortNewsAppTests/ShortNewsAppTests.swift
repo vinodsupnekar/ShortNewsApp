@@ -67,6 +67,19 @@ class ShortNewsAppTests: XCTestCase {
         }
     }
     
+    func test_load_deliversErrorOn200HttpResponseWithInvalidJSON() {
+        
+        let (sut, client) = makeSUT()
+        
+        let expectedResult = RemoteNewsLoader.Result.failure(RemoteNewsLoader.Error.invalidData)
+        
+        expect(sut, expectedResult: expectedResult) {
+            let json = ["invalid data"]
+            let jsonData = try! JSONSerialization.data(withJSONObject: json)
+            client.complete(withStatusCode: 200, data: jsonData)
+        }
+    }
+    
     private func expect(_ sut: RemoteNewsLoader ,expectedResult: RemoteNewsLoader.Result, on action: () -> Void) {
                 
         let expectation = expectation(description: "wait for completion")
