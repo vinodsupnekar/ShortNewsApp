@@ -93,6 +93,34 @@ class ShortNewsAppTests: XCTestCase {
         }
     }
     
+    func test_load_deliversItemson200HTTPResponseWithJsonList() {
+        let (sut, client) = makeSUT()
+        
+        let obj = NewsFeed(
+            source: "Fox News",
+            title: "LAURA INGRAHAM: Kamala Harris missed out on a 'huge opportunity'",
+            description: "Fox News host Laura Ingraham says",
+            publishedDate: "Thu, 17 Oct 2024 20:35:05 -0400")
+        
+        let item = [obj]
+        
+        let json = item.map {
+            return ["source": $0.source,
+                    "title": $0.title,
+                    "description": $0.description,
+                    "publishedDate": $0.publishedDate
+            ]
+        }
+        let item1 = ["data": json] as [String : [Any]]
+        
+        expect(sut, expectedResult: .success([obj])) {
+         
+            let jsonData = try! JSONSerialization.data(withJSONObject: item1)
+            client.complete(withStatusCode: 200, data: jsonData)
+            
+        }
+    }
+    
     private func expect(_ sut: RemoteNewsLoader ,expectedResult: RemoteNewsLoader.Result, on action: () -> Void) {
                 
         let expectation = expectation(description: "wait for completion")

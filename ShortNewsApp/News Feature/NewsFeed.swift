@@ -8,13 +8,13 @@
 public struct NewsFeed: Equatable {
     public let source: String
     public let title: String
-    public let desctiption: String
-    public let punlishedDate: String
+    public let description: String
+    public let publishedDate: String
     
-    public init(source: String, title: String, desctiption: String, punlishedDate: String) {
+    public init(source: String, title: String, description: String, publishedDate: String) {
         self.source = source
         self.title = title
-        self.desctiption = desctiption
-        self.punlishedDate = punlishedDate
+        self.description = description
+        self.publishedDate = publishedDate
     }
 }

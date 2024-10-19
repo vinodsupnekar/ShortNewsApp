@@ -9,7 +9,7 @@ struct RemoteNewsItem: Decodable {
     let source: String
     let title: String
     let description: String
-    let pubDate: String
+    let publishedDate: String
 }
 
 public final class RemoteNewsLoader: NewsLoader {
@@ -48,9 +48,7 @@ public final class RemoteNewsLoader: NewsLoader {
     }
     
     private struct Root: Decodable {
-        let status: String
         let data: [RemoteNewsItem]
-        
     }
     
     private func mapData(_ data: Data, from response: HTTPURLResponse)
@@ -66,11 +64,11 @@ public final class RemoteNewsLoader: NewsLoader {
                 NewsFeed(
                     source: remoteItem.source,
                     title: remoteItem.title,
-                    desctiption: remoteItem.description,
-                    punlishedDate: remoteItem.pubDate)
+                    description: remoteItem.description,
+                    publishedDate: remoteItem.publishedDate)
             }))
             
-        } catch _ {
+        } catch let error {
             return .failure(Error.invalidData)
         }
     }
