@@ -9,7 +9,7 @@ struct RemoteNewsItem: Decodable {
     let source: String
     let title: String
     let description: String
-    let pubDate: Date
+    let pubDate: String
 }
 
 public final class RemoteNewsLoader: NewsLoader {
@@ -70,7 +70,7 @@ public final class RemoteNewsLoader: NewsLoader {
                     punlishedDate: remoteItem.pubDate)
             }))
             
-        } catch let error {
+        } catch _ {
             return .failure(Error.invalidData)
         }
     }
