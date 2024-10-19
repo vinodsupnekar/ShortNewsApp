@@ -85,10 +85,6 @@ class ShortNewsAppTests: XCTestCase {
         let (sut, client) = makeSUT()
         
         expect(sut, expectedResult: .success([])) {
-            let json = ["data": [],
-                        "status": ""]
-            let jsonData = try! JSONSerialization.data(withJSONObject: json)
-            client.complete(withStatusCode: 200, data: jsonData)
             
             client.complete(withStatusCode: 200, data: makeItemJSON([]))
         }
