@@ -41,10 +41,36 @@ class ShortNewsAppTests: XCTestCase {
     func test_load_deliversErrorOnClientError() {
         
         let (sut, client) = makeSUT()
-        let expectation = expectation(description: "wait for completion")
        
         let expectedResult = RemoteNewsLoader.Result.failure(RemoteNewsLoader.Error.connectivity)
         
+        expect(sut, expectedResult: expectedResult) {
+            let clientError = NSError(domain: "Test", code: 0)
+            client.complete(with: clientError)
+        }
+    }
+    
+    func test_load_deliversErrorOnNon200HTTPResponse() {
+        
+        let (sut, client) = makeSUT()
+        let samples = [199, 201, 300, 400]
+
+        let expectedResult = RemoteNewsLoader.Result.failure(RemoteNewsLoader.Error.invalidData)
+
+        samples.enumerated().forEach { index, code in
+            
+            expect(sut, expectedResult: expectedResult) {
+                let json = ["data": []]
+                let jsonData = try! JSONSerialization.data(withJSONObject: json)
+                client.complete(withStatusCode: code, data: jsonData, at: index)
+            }
+        }
+    }
+    
+    private func expect(_ sut: RemoteNewsLoader ,expectedResult: RemoteNewsLoader.Result, on action: () -> Void) {
+                
+        let expectation = expectation(description: "wait for completion")
+
         sut.loadNewsFeed { receivedResult in
             
             switch(receivedResult, expectedResult) {
@@ -58,47 +84,9 @@ class ShortNewsAppTests: XCTestCase {
             }
             expectation.fulfill()
         }
-        
-        let clientError = NSError(domain: "Test", code: 0)
-        client.complete(with: clientError)
-        
+        action()
         wait(for: [expectation], timeout: 3.0)
     }
-    
-    func test_load_deliversErrorOnNon200HTTPResponse() {
-        
-        let (sut, client) = makeSUT()
-        let samples = [199, 201, 300, 400]
-
-        let expectedResult = RemoteNewsLoader.Result.failure(RemoteNewsLoader.Error.invalidData)
-
-        samples.enumerated().forEach { index, code in
-            let expectation = expectation(description: "wait for completion")
-
-            sut.loadNewsFeed { receivedResult in
-                
-                switch(receivedResult, expectedResult) {
-                case let(.success(receivedItems), .success(expectedItems)):
-                    XCTAssertEqual(receivedItems, expectedItems)
-                    
-                case let(.failure(expectedError as RemoteNewsLoader.Error), .failure(receivedError as RemoteNewsLoader.Error)):
-                    XCTAssertEqual(expectedError, receivedError)
-                 default:
-                    XCTFail("Expected result \(expectedResult) but got \(receivedResult)")
-                }
-                expectation.fulfill()
-            }
-            
-            let json = ["data": []]
-            let jsonData = try? JSONSerialization.data(withJSONObject: json)
-            
-            if let jsonData {
-                client.complete(withStatusCode: code, data: jsonData, at: index)
-            }
-            wait(for: [expectation], timeout: 3.0)
-        }
-    }
-    
     
     private func makeSUT(url: URL = URL(string: "https://a-given-url.com")!) -> (RemoteNewsLoader, HTTPClientSpy) {
         let url = URL(string: "https://a-given-url.com")!
