@@ -6,8 +6,15 @@
 //
 
 public struct NewsFeed: Equatable {
-    let source: String
-    let title: String
-    let desctiption: String
-    let punlishedDate: Date
+    public let source: String
+    public let title: String
+    public let desctiption: String
+    public let punlishedDate: String
+    
+    public init(source: String, title: String, desctiption: String, punlishedDate: String) {
+        self.source = source
+        self.title = title
+        self.desctiption = desctiption
+        self.punlishedDate = punlishedDate
+    }
 }
