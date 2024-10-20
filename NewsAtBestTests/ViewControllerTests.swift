@@ -34,9 +34,18 @@ final class ViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.numberOfRenderedNewsFeed(), 0)
         loader.completeFeedLoading(with: [image0], at: 0)
         
-        XCTAssertEqual(sut.numberOfRenderedNewsFeed(), 1)
+        DispatchQueue.main.async { [weak self, weak sut] in
+            
+            guard let self,
+                  let sut else {
+                XCTFail("test failed")
+                return
+            }
+            
+            XCTAssertEqual(sut.numberOfRenderedNewsFeed(), 1)
 
-        assertThat(sut, hasViewConfiguredFor: image0, at: 0)
+            self.assertThat(sut, hasViewConfiguredFor: image0, at: 0)
+        }
     }
     
     private func makeNewsFeed(source: String, title: String, description: String, publishedDate: String) -> NewsFeed {
