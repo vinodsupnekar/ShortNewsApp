@@ -143,9 +143,9 @@
 			children = (
 				948CE5592CC3F3E60072CFCA /* ShortNewsApp.xctestplan */,
 				941A9CBC2CC0A073006BEFB7 /* ShortNewsApp */,
-				941A9CC82CC0A073006BEFB7 /* ShortNewsAppTests */,
 				948CE5992CC420780072CFCA /* NewsAtBest */,
 				948CE5B02CC4207B0072CFCA /* NewsAtBestTests */,
+				941A9CC82CC0A073006BEFB7 /* ShortNewsAppTests */,
 				94C43F7D2CC42A5900654E3C /* Frameworks */,
 				941A9CBB2CC0A073006BEFB7 /* Products */,
 			);

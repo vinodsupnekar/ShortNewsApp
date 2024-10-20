@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         self.tableView.dataSource = self
         tableView.estimatedRowHeight = 20
         tableView.rowHeight = UITableView.automaticDimension
