@@ -105,7 +105,7 @@ class ShortNewsAppTests: XCTestCase {
             return ["source": $0.source,
                     "title": $0.title,
                     "description": $0.description,
-                    "publishedDate": $0.publishedDate
+                    "pubDate": $0.publishedDate
             ]
         }
         let item1 = ["data": json] as [String : [Any]]
