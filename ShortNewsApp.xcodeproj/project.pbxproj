@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		941A9CC52CC0A073006BEFB7 /* ShortNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941A9CBA2CC0A073006BEFB7 /* ShortNewsApp.framework */; };
+
 		94C43F7E2CC42A5900654E3C /* ShortNewsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941A9CBA2CC0A073006BEFB7 /* ShortNewsApp.framework */; };
 		94C43F7F2CC42A5900654E3C /* ShortNewsApp.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 941A9CBA2CC0A073006BEFB7 /* ShortNewsApp.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+
+		941A9CD82CC0A32A006BEFB7 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = 941A9CD72CC0A32A006BEFB7 /* ReadMe.md */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,7 @@
 		948CE5592CC3F3E60072CFCA /* ShortNewsApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ShortNewsApp.xctestplan; sourceTree = "<group>"; };
 		948CE5982CC420780072CFCA /* NewsAtBest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsAtBest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		948CE5AD2CC4207B0072CFCA /* NewsAtBestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsAtBestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		941A9CD72CC0A32A006BEFB7 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -141,7 +146,11 @@
 		941A9CB02CC0A073006BEFB7 = {
 			isa = PBXGroup;
 			children = (
+
 				948CE5592CC3F3E60072CFCA /* ShortNewsApp.xctestplan */,
+
+				941A9CD72CC0A32A006BEFB7 /* ReadMe.md */,
+
 				941A9CBC2CC0A073006BEFB7 /* ShortNewsApp */,
 				948CE5992CC420780072CFCA /* NewsAtBest */,
 				948CE5B02CC4207B0072CFCA /* NewsAtBestTests */,
@@ -327,6 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				941A9CD82CC0A32A006BEFB7 /* ReadMe.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
