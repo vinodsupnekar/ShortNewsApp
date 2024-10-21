@@ -6,6 +6,8 @@
 
 Example:- title : NYT plagiarism consultant admits Harris scandal 'more serious' than he thought
 
+API URL :- https://riad-news-api.vercel.app/api/news/source?code=US-FN
+
         description : Plagiarism consultant Jonathan Bailey admitted the allegations against Vice President Kamala Harris are more significant than he described to the New York Times.
 
 ## Topics
