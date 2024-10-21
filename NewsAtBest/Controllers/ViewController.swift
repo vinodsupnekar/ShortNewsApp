@@ -17,13 +17,13 @@ protocol NewsFeedRefreshDelegate: AnyObject {
 }
 
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var noNetworkConnectionView: UIView!
     
-    var viewModel : NewsFeedViewModel?
-    var cellModels: [NewsFeedModel]?
+    private var viewModel : NewsFeedViewModel?
+    private var cellModels: [NewsFeedModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()

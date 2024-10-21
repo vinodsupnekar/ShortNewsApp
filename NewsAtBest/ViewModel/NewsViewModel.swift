@@ -12,7 +12,7 @@ struct NewsFeedModel {
     let description: String
 }
 
-class NewsFeedViewModel {
+final class NewsFeedViewModel {
     
     var model: [NewsFeedModel]?
     let newsLoader : NewsLoader!

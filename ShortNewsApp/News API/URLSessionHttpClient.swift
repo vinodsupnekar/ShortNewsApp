@@ -5,7 +5,7 @@
 //  Created by Vinod Supnekar on 19/10/24.
 //
 
-public class URLSessionHttpClient: HTTPClient {
+public final class URLSessionHttpClient: HTTPClient {
     
     private let session: URLSession
     

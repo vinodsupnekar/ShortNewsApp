@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class NewsFeedCell: UITableViewCell {
+final class NewsFeedCell: UITableViewCell {
     
     @IBOutlet var title: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
